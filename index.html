@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christopher Daniel | Mechanical Design & Product Portfolio</title>
+    <style>
+
+        /* FINALIZED WARM RUSTIC COLOR PALETTE */
+        :root {
+            --bg-color: #f5f2eb;
+            --card-bg: #fcfbf9;
+            --text-primary: #2b2623;
+            --text-secondary: #635b54;
+            --border-color: #e3ded6;
+            --accent-color: #8c6d53;
+            --badge-bg: #ebd8c8;
+            --badge-text: #3d2b1f;
+            --tag-bg: #efe7dd;
+            --tag-text: #543f31;
+            --shadow: 0 4px 20px rgba(61, 43, 31, 0.06);
+        }
+
+        /* ==========================================================================
+           BASE STYLES & RESET
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ==========================================================================
+           1. COVER / HERO SECTION (Modeled after Design Portfolio PDF Cover)
+           ========================================================================== */
+        .cover-hero {
+            text-align: center;
+            padding: 60px 20px 40px 20px;
+            margin-bottom: 50px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cover-tagline {
+            font-size: 2.0rem;
+            letter-spacing: 0.0625em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .cover-name {
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .cover-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .contact-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .badge {
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+        }
+
+        /* ==========================================================================
+           2. SEQUENTIAL PROJECT LIST SECTION
+           ========================================================================== */
+        .section-heading {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-heading::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        .project-block {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 36px;
+            margin-bottom: 48px;
+            box-shadow: var(--shadow);
+        }
+
+        .project-header {
+            margin-bottom: 16px;
+        }
+
+        .project-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .tech-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+            background: var(--bg-color);
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .meta-item {
+            font-size: 0.88rem;
+        }
+
+        .meta-label {
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .meta-value {
+            color: var(--text-secondary);
+        }
+
+        .project-statement {
+            font-size: 0.98rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        /* Image Display Grid */
+        .project-image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .img-wrapper {
+            position: relative;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 4 / 3;
+            cursor: pointer;
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .img-wrapper:hover img {
+            transform: scale(1.04);
+        }
+
+        .img-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            text-align: center;
+        }
+
+        .gallery-trigger-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .gallery-trigger-btn:hover {
+            opacity: 0.85;
+        }
+
+        /* ==========================================================================
+           3. TECHNICAL CREDENTIALS & EDUCATION FOOTER
+           ========================================================================== */
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 20px;
+        }
+
+        .info-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .info-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .info-card p, .info-card li {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            list-style-type: none;
+        }
+
+        /* Lightbox Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 85%;
+            border-radius: 8px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .cover-name { font-size: 2.2rem; }
+            .project-image-grid { grid-template-columns: 1fr; }
+            .bottom-grid { grid-template-columns: 1fr; }
+            .project-block { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- COVER / HERO PAGE (Inspired by Design Portfolio Cover) -->
+        <header class="cover-hero">
+            <div class="cover-tagline">MECHANICAL & PRODUCT DESIGN PORTFOLIO</div>
+            <h1 class="cover-name">Christopher Daniel</h1>
+            <p class="cover-subtitle">Product Development • Mechanical Design • Manufacturing Engineer</p>
+            <div class="contact-badges">
+                <a href="tel:7329152599" class="badge">📞 (732) 915-2599</a>
+                <a href="mailto:chris.daniel2497@outlook.com" class="badge">✉️ chris.daniel2497@outlook.com</a>
+                <span class="badge">🏅SOLIDWORKS CSWA Certified</span>
+            </div>
+        </header>
+
+        <!-- PRODUCT DEVELOPMENT & HARDWARE PROJECTS -->
+        <main>
+            <h2 class="section-heading">Product Development & Hardware Projects</h2>
+
+            <!-- PROJECT 1 -->
+            <article class="project-block">
+                <div class="project-header">
+                    <h3 class="project-title">1. Swing Weight And Casting Jig</h3>
+                    <div class="tech-meta-grid">
+                        <div class="meta-item">
+                            <span class="meta-label">Design Software</span>
+                            <span class="meta-value">SolidWorks (Resilient Modeling Strategy - RMS)</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Manufacturing Process</span>
+                            <span class="meta-value">Additive Manufacturing (3D Printing) & Silicone Rubber Casting</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="project-statement">
+                    Engineered a custom 2-part tennis training aid and a casting jig in SolidWorks featuring thread-alignment channels to cast silicone rubber and for fastening during training. Designed precise internal cavities and stop pins for fastener integration and finishing surface.
+                </p>
+                <div class="project-image-grid">
+                    <div class="img-wrapper" onclick="openLightbox('images/swing-weight assy model.png')">
+                        <img src="images/swing-weight assy model.png" alt="Swing Weight CAD Model">
+                        <span class="img-caption">SolidWorks CAD Model</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/swing-weight explod model.png')">
+                        <img src="images/swing-weight explod model.png" alt="2D Engineering Drawing">
+                        <span class="img-caption">SolidWorks CAD Model</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/swing-weight mold jig.png')">
+                        <img src="images/swing-weight mold jig.png" alt="Cast Rubber Prototype">
+                        <span class="img-caption">SolidWorks CAD Model</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/swing-weight mold jig explod.png')">
+                        <img src="images/swing-weight mold jig explod.png" alt="2D Engineering Drawing">
+                        <span class="img-caption">SolidWorks CAD Model</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/swing-weight drawing-1.png')">
+                        <img src="images/swing-weight drawing-1.png" alt="2D Engineering Drawing">
+                        <span class="img-caption">SolidWorks CAD Drawing</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/swing-weight drawing-2.png')">
+                        <img src="images/swing-weight drawing-2.png" alt="2D Engineering Drawing">
+                        <span class="img-caption">SolidWorks CAD Drawing</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/swing-weight jig 3Dprint.png')">
+                        <img src="images/swing-weight jig 3Dprint.png" alt="2D Engineering Drawing">
+                        <span class="img-caption">AM fabricated casting jig</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/swing-weight & jig 3Dprint.png')">
+                        <img src="images/swing-weight & jig 3Dprint.png" alt="2D Engineering Drawing">
+                        <span class="img-caption">AM weight & jig </span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/swing-weight jig assy.png')">
+                        <img src="images/swing-weight jig assy.png" alt="2D Engineering Drawing">
+                        <span class="img-caption">casting jig assembly</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/fabricated swing-weight.png')">
+                        <img src="images/fabricated swing-weight.png" alt="2D Engineering Drawing">
+                        <span class="img-caption">Silicone cast weight</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/fabricated swing-weight assy.png')">
+                        <img src="images/fabricated swing-weight assy.png" alt="2D Engineering Drawing">
+                        <span class="img-caption">swing weight assembly</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/swing-weight application.png')">
+                        <img src="images/swing-weight application.png" alt="2D Engineering Drawing">
+                        <span class="img-caption">swing weight application</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PROJECT 2 -->
+            <article class="project-block">
+                <div class="project-header">
+                    <h3 class="project-title">2. Tennis Puzzle Box</h3>
+                    <div class="tech-meta-grid">
+                        <div class="meta-item">
+                            <span class="meta-label">Design Software</span>
+                            <span class="meta-value">SolidWorks (Resilient Modeling Strategy - RMS)</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Manufacturing Process</span>
+                            <span class="meta-value">Additive Manufacturing (3D Printing) & DFMA</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="project-statement">
+                    Designed an interlocking mechanical puzzle box featuring sliding lid tracks and concealed internal locking features. Utilized Resilient Modeling Strategy (RMS) in SolidWorks to maintain tight clearance tolerances and achieve smooth sliding motion without metal fasteners.
+                </p>
+                <div class="project-image-grid">
+                    <div class="img-wrapper" onclick="openLightbox('images/puzzel box assy model.png')">
+                        <img src="images/puzzel box assy model.png" alt="Tennis Puzzle Box CAD">
+                        <span class="img-caption">SolidWorks Assembly Model</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/puzzel box explod model.png')">
+                        <img src="images/puzzel box explod model.png" alt="Exploded Assembly Drawing">
+                        <span class="img-caption">SolidWorksExploded Model</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/puzzel box pic-1.png')">
+                        <img src="images/puzzel box pic-1.png" alt="Physical 3D Printed Box">
+                        <span class="img-caption">AM Puzzel Box</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/puzzel box pic-2.png')">
+                        <img src="images/puzzel box pic-2.png" alt="Physical 3D Printed Box">
+                        <span class="img-caption">AM Puzzel Box</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/puzzel box parts pic-1.png')">
+                        <img src="images/puzzel box parts pic-1.png" alt="Physical 3D Printed Box">
+                        <span class="img-caption">AM Puzzel Box</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/puzzel box parts pic-2.png')">
+                        <img src="images/puzzel box parts pic-2.png" alt="Physical 3D Printed Box">
+                        <span class="img-caption">AM Puzzel Box Parts</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PROJECT 3 -->
+            <article class="project-block">
+                <div class="project-header">
+                    <h3 class="project-title">3. Quadcopter Drone Frame</h3>
+                    <div class="tech-meta-grid">
+                        <div class="meta-item">
+                            <span class="meta-label">Design Software</span>
+                            <span class="meta-value">SolidWorks Assembly & Python Integration</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Manufacturing Process</span>
+                            <span class="meta-value">Additive Manufacturing & Hardware Integration</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="project-statement">
+                    Fabricated a structural drone frame with holed and pocketed arm for hardware channel and maximize stiffness-to-weight ratio for the possiblity of autonomous surveillance flight. Integrated brushless motor mounts, flight controller decks, wiring channels, and for the ability for a Raspberry Pi interface running custom flight scripts.
+                </p>
+                <div class="project-image-grid">
+                    <div class="img-wrapper" onclick="openLightbox('images/quadcopter assy model.png')">
+                        <img src="images/quadcopter assy model.png" alt="Quadcopter Frame CAD">
+                        <span class="img-caption">SolidWorks Assembly Model</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/quadcopter explod model.png')">
+                        <img src="images/quadcopter explod model.png" alt="Frame Assembly Drawing">
+                        <span class="img-caption">SolidWorks Exploded Model</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/quadcopter pic-1.png')">
+                        <img src="images/quadcopter pic-1.png" alt="Flight-Tested Drone">
+                        <span class="img-caption">AM frame with Hardware</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/quadcopter pic-2.png')">
+                        <img src="images/quadcopter pic-2.png" alt="Flight-Tested Drone">
+                        <span class="img-caption">AM frame with Hardware</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PROJECT 4 -->
+            <article class="project-block">
+                <div class="project-header">
+                    <h3 class="project-title">4. Custom Coaster Assembly</h3>
+                    <div class="tech-meta-grid">
+                        <div class="meta-item">
+                            <span class="meta-label">Design Software</span>
+                            <span class="meta-value">SolidWorks</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Manufacturing Process</span>
+                            <span class="meta-value">Lathe Machining, Laser Engraving & Cutting</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="project-statement">
+                    Developed a multi-material coaster combining a precision lathe machined stainless steel base with a laser-engraved and cut birch wood insert. Generated production drawings adhering strictly to ASME Y14.5 GD&T standards, including section views and a Bill of Materials (BOM).
+                </p>
+                <div class="project-image-grid">
+                    <div class="img-wrapper" onclick="openLightbox('images/coster assy model.png')">
+                        <img src="images/coster assy model.png" alt="Coaster Assembly CAD">
+                        <span class="img-caption">SolidWorks Assembly Model</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/coster explod model.png')">
+                        <img src="images/coster explod model.png" alt="ASME Y14.5 Technical Drawing">
+                        <span class="img-caption">SolidWorks Exploded Model</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/coster base drawing.png')">
+                        <img src="images/coster base drawing.png" alt="Machined Stainless Steel Coaster">
+                        <span class="img-caption">Solidworks CAD Drawing</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/coster assy drawing.png')">
+                        <img src="images/coster assy drawing.png" alt="Machined Stainless Steel Coaster">
+                        <span class="img-caption">SolidWorks CAD Assembly Drawing</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/coster pic.png')">
+                        <img src="images/coster pic.png" alt="Machined Stainless Steel Coaster">
+                        <span class="img-caption">Machined Metal Base with laser etched and cut wood</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PROJECT 5 -->
+            <article class="project-block">
+                <div class="project-header">
+                    <h3 class="project-title">5. Custom Photo Frame</h3>
+                    <div class="tech-meta-grid">
+                        <div class="meta-item">
+                            <span class="meta-label">Design Software</span>
+                            <span class="meta-value">SolidWorks 3D Modeling</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Manufacturing Process</span>
+                            <span class="meta-value">Additive Manufacturing (3D Printing)</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="project-statement">
+                    Designed and facricated a modular tennis-themed photo frame with a removable backplate for photo swaps. Combined 3D printed tennis court frame with photo frame hardware.
+                </p>
+                <div class="project-image-grid">
+                    <div class="img-wrapper" onclick="openLightbox('images/photo frame assy model.png')">
+                        <img src="images/photo frame assy model.png" alt="Photo Frame CAD">
+                        <span class="img-caption">SolidWorks Assembly Model</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/photo frame explod model.png')">
+                        <img src="images/photo frame explod model.png" alt="Frame Drawing">
+                        <span class="img-caption">SolidWorks Exploded Model</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/photo frame pic-1.png')">
+                        <img src="images/photo frame pic-1.png" alt="Physical Frame">
+                        <span class="img-caption">AM Frame With Photo</Frame></Frame></span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/photo frame pic-2.png')">
+                        <img src="images/photo frame pic-2.png" alt="Physical Frame">
+                        <span class="img-caption">AM Framw With Photo</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PROJECT 6 -->
+            <article class="project-block">
+                <div class="project-header">
+                    <h3 class="project-title">6. Modular Laptop Stand</h3>
+                    <div class="tech-meta-grid">
+                        <div class="meta-item">
+                            <span class="meta-label">Design Software</span>
+                            <span class="meta-value">SolidWorks, Inspire</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Manufacturing Process</span>
+                            <span class="meta-value">Additive Manufacturing (3D Printing) & DFMA Prototyping</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="project-statement">
+                    Designed and Manufactured an ergonomic desktop laptop stand incorporating storage drawers and a drink coster. Applied DFMA principles for tool-less snap-fit assembly and optimized 3D print orientations for structural load capacity.
+                </p>
+                <div class="project-image-grid">
+                    <div class="img-wrapper" onclick="openLightbox('images/laptop stand assy model.png')">
+                        <img src="images/laptop stand assy model.png" alt="Laptop Stand CAD">
+                        <span class="img-caption">SolidWorks Aseembly Model</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/laptop stand pic-1.png')">
+                        <img src="images/laptop stand pic-1.png" alt="Laptop Stand Drawing">
+                        <span class="img-caption">AM Assembled Stand</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/laptop stand pic-2.png')">
+                        <img src="images/laptop stand pic-2.png" alt="Physical Laptop Stand">
+                        <span class="img-caption">AM Assembled Stand</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/laptop stand w: laptop pic-1.png')">
+                        <img src="images/laptop stand w: laptop pic-1.png" alt="Physical Laptop Stand">
+                        <span class="img-caption">AM Assembled Stand with Laptop</span>
+                    </div>
+                    <div class="img-wrapper" onclick="openLightbox('images/laptop stand w:laptop pic-2.png')">
+                        <img src="images/laptop stand w:laptop pic-2.png" alt="Physical Laptop Stand">
+                        <span class="img-caption">AM Assembled Stand with Laptop</span>
+                    </div>
+                </div>
+            </article>
+
+        </main>
+
+        <!-- TECHNICAL CREDENTIALS & EDUCATION -->
+        <section class="bottom-grid">
+            <div class="info-card">
+                <h3>Technical Skills & Machinery</h3>
+                <p><strong>CAD & Standards:</strong> SolidWorks (CSWA Certified), AutoCAD, ASME Y14.5 GD&T, Resilient Modeling Strategy (RMS), DFMA</p>
+                <p><strong>Shop & Manufacturing:</strong> Additive Manufacturing (3D Printing), Lathe, Laser Cutting, Drill Press, Other Shop Tools, Hand & Power Tools</p>
+            </div>
+            <div class="info-card">
+                <h3>Education Snapshot</h3>
+                <ul>
+                    <li>🎓 <strong>M.Eng. Mechanical Engineering</strong> — Stevens Institute of Technology</li>
+                    <li>🎓 <strong>A.A.S. Computer Aided Design</strong> — Spokane Community College</li>
+                    <li>🎓 <strong>Certificate in Aviation Maintenance</strong> — Spokane Community College</li>
+                    <li>🎓 <strong>B.E. Aeronautical Engineering</strong> — Anna University</li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Lightbox Modal for Fullscreen Image Viewing -->
+    <div id="lightbox" class="modal" onclick="closeLightbox()">
+        <span class="modal-close">&times;</span>
+        <img id="lightbox-img" class="modal-content" src="" alt="Expanded View">
+    </div>
+
+    <!-- Theme Switcher & Modal JavaScript -->
+    <script>
+        function setTheme(themeName) {
+            document.documentElement.setAttribute('data-theme', themeName);
+            document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function openLightbox(imgSrc) {
+            const modal = document.getElementById('lightbox');
+            const modalImg = document.getElementById('lightbox-img');
+            modal.style.display = 'flex';
+            modalImg.src = imgSrc;
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
